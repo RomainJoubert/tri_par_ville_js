@@ -38,10 +38,11 @@ function isLess(A, B) {
     i = A.dist;
     j = B.dist;
 
-    if (i < j) {
-        return true
-    }
     displayBuffer.push(['compare', A, B]); // Do not delete this line (for display)
+    if (i < j) {
+        return true;
+    }
+    return false;
 }
 
 
@@ -50,6 +51,8 @@ function insertsort() {
         for (let k = i; k > 0; k--) {
             if (isLess(csvData[k], csvData[k - 1])) {
                 swap(k, k - 1);
+            } else {
+                break;
             }
         }
     }
@@ -61,11 +64,9 @@ function selectionsort() {
         for (let j = i + 1; j < csvData.length; j++) {
             if (isLess(csvData[j], csvData[k])) {
                 k = j;
-                if (isLess(csvData[k], csvData[i])) {
-                    swap(k, i);
-                }
             }
         }
+        swap(k, i);
     }
 }
 
